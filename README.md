@@ -1,6 +1,6 @@
 # Agustín Bernal — Web personal
 
-Portfolio / CV en web, en español (`/`) e inglés (`/en/`). HTML y CSS a mano, sin framework:
+Portfolio / CV en web, en español (`/`) e inglés (`/en/`). HTML y CSS sin framework:
 `build.mjs` lee los textos de `src/content.mjs` y genera la web estática en `dist/`.
 
 ## Correr en local

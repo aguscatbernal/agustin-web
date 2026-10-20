@@ -31,12 +31,12 @@ for (const { src, name, crop } of jobs) {
 // Vista previa al compartir el link (1200x630).
 const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <rect width="1200" height="630" fill="#0a0a0a"/>
-  <rect x="80" y="96" width="44" height="4" fill="#ff5b2e"/>
+  <rect x="80" y="96" width="44" height="4" fill="#d4ff3a"/>
   <text x="80" y="150" font-family="Consolas, monospace" font-size="28" fill="#9b978e">~/málaga $ whoami</text>
   <text x="74" y="275" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="104" fill="#f3f1ec">Agustín Nahuel</text>
   <text x="74" y="385" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="104" fill="none" stroke="#f3f1ec" stroke-width="2">Bernal Sita</text>
   <text x="80" y="480" font-family="Arial, sans-serif" font-size="36" fill="#f3f1ec">Webs y apps reales, rápidas y seguras.</text>
-  <text x="80" y="550" font-family="Consolas, monospace" font-size="26" fill="#ff5b2e">wiccao.com · Flutter · React · Unity</text>
+  <text x="80" y="550" font-family="Consolas, monospace" font-size="26" fill="#d4ff3a">wiccao.com · Flutter · React · Unity</text>
 </svg>`;
 await sharp(Buffer.from(og)).jpeg({ quality: 86 }).toFile("public/og-image.jpg");
 console.log("ok og-image");

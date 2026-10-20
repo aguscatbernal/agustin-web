@@ -28,9 +28,9 @@
   --muted: #9b978e;
   --line: #242424;
   --line-2: #363636;
-  --accent: #ff5b2e;
+  --accent: #d4ff3a;
   --accent-ink: #0a0a0a;
-  --ok: #4cc27f;
+  --ok: var(--accent);
   --wrap: 1180px;
   --gutter: clamp(16px, 4vw, 40px);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -100,7 +100,7 @@ em { font-style: normal; color: var(--accent); }
   -webkit-mask-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 30%), #000, transparent 70%);
 }
 .hero-wrap.lit::after { opacity: 1; }
-.hero-wrap.lit { background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 91, 46, 0.07), transparent 65%); }
+.hero-wrap.lit { background: radial-gradient(420px circle at var(--mx) var(--my), rgba(212, 255, 58, 0.06), transparent 65%); }
 
 .hero { max-width: var(--wrap); margin-inline: auto; padding: clamp(40px, 7vw, 96px) var(--gutter) clamp(48px, 7vw, 88px); container-type: inline-size; }
 .prompt { color: var(--muted); margin-bottom: clamp(18px, 3vw, 28px); text-transform: none; font-size: 0.9rem; letter-spacing: 0.02em; min-height: 1.5em; }
@@ -168,7 +168,7 @@ a:hover > .arrow { transform: translate(2px, -2px); }
 .f-head p { color: color-mix(in srgb, var(--ink) 86%, transparent); }
 .f-head .btn { margin-top: 8px; }
 
-.browser { margin: 0; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 40px 100px -40px rgba(255, 91, 46, 0.25); }
+.browser { margin: 0; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 40px 100px -40px rgba(212, 255, 58, 0.18); }
 .browser-bar, .app-bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #1c1c1f; color: #8b8b93; font: 500 0.72rem "Plex Mono", ui-monospace, monospace; }
 .browser-bar i, .app-bar i { width: 9px; height: 9px; border-radius: 50%; background: #3a3a40; }
 .browser-bar span, .app-bar span { margin-left: 10px; }
@@ -271,7 +271,7 @@ a:hover > .arrow { transform: translate(2px, -2px); }
 .next { background: var(--ink); color: var(--bg); padding: clamp(22px, 3vw, 32px); }
 .next h3 { font-size: 1.6rem; margin-bottom: 14px; }
 .next p { color: color-mix(in srgb, var(--bg) 78%, transparent); }
-.next-t { color: #c23a12 !important; margin-top: 20px; }
+.next-t { color: #4a5d00 !important; margin-top: 20px; }
 .next ul { margin: 0; padding-left: 1.1em; }
 .next li { margin-bottom: 4px; }
 

@@ -10,7 +10,7 @@ export const site = {
   github: "https://github.com/aguscatbernal",
   linkedin: "https://www.linkedin.com/in/agust%C3%ADn-bernal-67479b372/",
   // La cinta que pasa bajo la portada.
-  marquee: ["Flutter", "React", "TypeScript", "Java", "Dart", "C#", "Python", "Unity", "Firebase", "Three.js", "Cloudflare", "Git"],
+  marquee: ["Flutter", "React", "TypeScript", "Java", "Dart", "C#", "Python", "Unity", "Firebase", "Three.js", "Azure", "Cloudflare", "Git"],
 };
 
 const links = {
@@ -212,7 +212,8 @@ export const content = {
         ["Lenguajes", "Dart, TypeScript / JavaScript, Java, C#, Python, HTML, CSS"],
         ["Frameworks y motores", "Flutter, React, Unity, Flask"],
         ["Datos", "Firebase / Firestore, SQLite, MySQL"],
-        ["Día a día", "Git y GitHub, Cloudflare, Vite, Linux, Blender, Claude Code"],
+        ["Nube y equipo", "Microsoft Azure, Cloudflare, Microsoft 365 y Teams"],
+        ["Día a día", "Git y GitHub, Vite, Linux, Blender, Claude Code"],
       ],
     },
     next: {
@@ -229,7 +230,7 @@ export const content = {
       noscript: "aguscatbernal [arroba] gmail.com",
       githubLabel: "GitHub",
       linkedinLabel: "LinkedIn",
-      footer: "Hecha a mano por mí, sin cookies ni rastreadores.",
+      footer: "Málaga, España",
       motionOff: "Reducir movimiento",
     },
   },
@@ -424,7 +425,8 @@ export const content = {
         ["Languages", "Dart, TypeScript / JavaScript, Java, C#, Python, HTML, CSS"],
         ["Frameworks & engines", "Flutter, React, Unity, Flask"],
         ["Data", "Firebase / Firestore, SQLite, MySQL"],
-        ["Day to day", "Git & GitHub, Cloudflare, Vite, Linux, Blender, Claude Code"],
+        ["Cloud & teamwork", "Microsoft Azure, Cloudflare, Microsoft 365 and Teams"],
+        ["Day to day", "Git & GitHub, Vite, Linux, Blender, Claude Code"],
       ],
     },
     next: {
@@ -441,7 +443,7 @@ export const content = {
       noscript: "aguscatbernal [at] gmail.com",
       githubLabel: "GitHub",
       linkedinLabel: "LinkedIn",
-      footer: "Hand-built by me, with no cookies or trackers.",
+      footer: "Málaga, Spain",
       motionOff: "Reduce motion",
     },
   },
