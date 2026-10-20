@@ -15,18 +15,28 @@ const list = (arr, fn) => arr.map(fn).join("");
 const picture = (name, alt, sizes, eager = false) =>
   `<img src="/img/${name}-1200.webp" srcset="/img/${name}-700.webp 700w, /img/${name}-1200.webp 1200w" sizes="${sizes}" alt="${esc(alt)}" width="1200" height="630"${eager ? "" : ' loading="lazy"'} decoding="async">`;
 
-const arrow = `<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>`;
+// El nombre en dos líneas («Agustín Nahuel» / «Bernal Sita»), cada palabra en su
+// propia máscara para que suba al presentarse.
+const nameLines = () => {
+  const words = site.fullName.split(" ");
+  const half = Math.ceil(words.length / 2);
+  return [words.slice(0, half), words.slice(half)]
+    .map((ws, i) => `<span class="line${i ? " outline" : ""}">${ws.map((w) => `<span class="w"><span>${esc(w)}</span></span>`).join(" ")}</span>`)
+    .join("");
+};
+
+const arrow =`<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>`;
 
 function visual(p, t) {
-  if (p.img) return `<figure class="shot">${picture(p.img, p.imgAlt, "(min-width: 900px) 560px, 92vw")}</figure>`;
+  if (p.img) return `<figure class="shot wipe">${picture(p.img, p.imgAlt, "(min-width: 900px) 560px, 92vw")}</figure>`;
   if (p.gallery)
-    return `<div class="gallery">${list(p.gallery, ([n, alt], i) => `<figure class="${i === 0 ? "wide" : ""}">${picture(n, alt, i === 0 ? "(min-width: 900px) 560px, 92vw" : "(min-width: 900px) 280px, 46vw")}</figure>`)}</div>`;
+    return `<div class="gallery">${list(p.gallery, ([n, alt], i) => `<figure class="wipe${i === 0 ? " wide" : ""}">${picture(n, alt, i === 0 ? "(min-width: 900px) 560px, 92vw" : "(min-width: 900px) 280px, 46vw")}</figure>`)}</div>`;
   const v = p.visual;
-  if (v.type === "type") return `<div class="vis vis-type" aria-hidden="true"><span class="big">${esc(v.big)}</span><span class="small">${esc(v.small)}</span></div>`;
+  if (v.type === "type") return `<div class="wipe vis vis-type" aria-hidden="true"><span class="big">${esc(v.big)}</span><span class="small">${esc(v.small)}</span></div>`;
   if (v.type === "list")
-    return `<div class="vis vis-app" aria-hidden="true"><div class="app-bar"><i></i><i></i><i></i><span>reels_manager</span></div><ul>${list(v.items, (it, i) => `<li${i === 4 ? ' class="on"' : ""}>${esc(it)}</li>`)}</ul></div>`;
+    return `<div class="wipe vis vis-app" aria-hidden="true"><div class="app-bar"><i></i><i></i><i></i><span>reels_manager</span></div><ul>${list(v.items, (it, i) => `<li${i === 4 ? ' class="on"' : ""}>${esc(it)}</li>`)}</ul></div>`;
   if (v.type === "table")
-    return `<div class="vis vis-table"><table><caption>${esc(v.caption)}</caption><thead><tr>${list(v.head, (h) => `<th scope="col">${esc(h)}</th>`)}</tr></thead><tbody>${list(v.rows, (r) => `<tr>${list(r, (c, i) => (i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${esc(c)}</td>`))}</tr>`)}</tbody></table></div>`;
+    return `<div class="wipe vis vis-table"><table><caption>${esc(v.caption)}</caption><thead><tr>${list(v.head, (h) => `<th scope="col">${esc(h)}</th>`)}</tr></thead><tbody>${list(v.rows, (r) => `<tr>${list(r, (c, i) => (i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${esc(c)}</td>`))}</tr>`)}</tbody></table></div>`;
   return "";
 }
 
@@ -72,22 +82,22 @@ function page(t) {
 <meta property="og:image" content="${SITE_URL}/og-image.jpg">
 <meta property="og:locale" content="${t.lang === "es" ? "es_ES" : "en_GB"}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f2efe8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
-    name: site.name,
+    name: site.fullName,
+    alternateName: site.name,
     url,
     jobTitle: t.lang === "es" ? "Desarrollador de software" : "Software developer",
     address: { "@type": "PostalAddress", addressLocality: "Málaga", addressCountry: "ES" },
     sameAs: [site.github, site.linkedin].filter(Boolean),
     knowsLanguage: ["es", "en"],
   })}</script>
-<script src="/main.js" defer></script>
+<script src="/main.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">${t.nav.skip}</a>
@@ -103,21 +113,29 @@ function page(t) {
 </header>
 
 <main id="main">
-<section class="hero">
-  <div class="hero-text">
-    <p class="kicker mono"><span class="dot" aria-hidden="true"></span>${esc(t.hero.kicker)}</p>
-    <h1>${rich(t.hero.title)}</h1>
-    <p class="lead">${rich(t.hero.lead)}</p>
-    <p class="ctas">
-      <a class="btn" href="#trabajo">${t.hero.ctaPrimary}</a>
-      <a class="btn ghost" href="#contacto">${t.hero.ctaSecondary}</a>
-    </p>
+<section class="hero-wrap">
+<div class="hero">
+  <p class="prompt mono" aria-hidden="true"><span class="path">~/málaga</span> <span class="dollar">$</span> <span class="cmd" data-type="${esc(t.hero.prompt)}">${esc(t.hero.prompt)}</span><span class="caret"></span></p>
+  <h1 class="name">${nameLines()}</h1>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="kicker mono later"><span class="dot" aria-hidden="true"></span>${esc(t.hero.kicker)}</p>
+      <p class="statement later">${rich(t.hero.statement)}</p>
+      <p class="lead later">${rich(t.hero.lead)}</p>
+      <p class="ctas later">
+        <a class="btn" href="#trabajo">${t.hero.ctaPrimary}</a>
+        <a class="btn ghost" href="#contacto">${t.hero.ctaSecondary}</a>
+      </p>
+    </div>
+    <aside class="sheet later" aria-label="${esc(t.hero.sheetTitle)}">
+      <p class="mono sheet-t">${esc(t.hero.sheetTitle)}</p>
+      <dl>${list(t.hero.sheet, ([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`)}</dl>
+    </aside>
   </div>
-  <aside class="sheet" aria-label="${esc(t.hero.sheetTitle)}">
-    <p class="mono sheet-t">${esc(t.hero.sheetTitle)}</p>
-    <dl>${list(t.hero.sheet, ([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`)}</dl>
-  </aside>
+</div>
 </section>
+
+<div class="marquee" aria-hidden="true"><div class="track">${list([0, 1], () => `<p>${list(site.marquee, (s) => `<span>${esc(s)}</span><i>✦</i>`)}</p>`)}</div></div>
 
 <section class="featured" id="trabajo" aria-labelledby="f-title">
   <div class="wrap">
@@ -191,15 +209,18 @@ function page(t) {
     <ul class="c-links">
       <li><span class="mono">${t.contact.emailLabel}</span> <a class="mail" data-mail="${site.emailEncoded}" href="#contacto">${esc(t.contact.noscript)}</a></li>
       <li><span class="mono">${t.contact.githubLabel}</span> <a href="${site.github}" target="_blank" rel="noopener">github.com/aguscatbernal</a></li>
-      ${site.linkedin ? `<li><span class="mono">${t.contact.linkedinLabel}</span> <a href="${site.linkedin}" target="_blank" rel="noopener">${esc(site.linkedin.replace(/^https?:\/\/(www\.)?/, ""))}</a></li>` : ""}
+      ${site.linkedin ? `<li><span class="mono">${t.contact.linkedinLabel}</span> <a href="${site.linkedin}" target="_blank" rel="noopener">${esc(decodeURI(site.linkedin).replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""))}</a></li>` : ""}
     </ul>
   </div>
 </section>
 </main>
 
 <footer class="foot wrap">
-  <p>© ${new Date().getFullYear()} Agustín Bernal · ${esc(t.contact.footer)}</p>
-  <a class="mono" href="${t.nav.switchHref}" hreflang="${other.lang}" lang="${other.lang}">${t.nav.switchLabel}</a>
+  <p>© ${new Date().getFullYear()} ${esc(site.fullName)} · ${esc(t.contact.footer)}</p>
+  <div class="foot-r">
+    <button class="motion-toggle mono" type="button" aria-pressed="false" hidden>${t.contact.motionOff}</button>
+    <a class="mono" href="${t.nav.switchHref}" hreflang="${other.lang}" lang="${other.lang}">${t.nav.switchLabel}</a>
+  </div>
 </footer>
 </body>
 </html>

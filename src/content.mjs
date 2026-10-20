@@ -5,9 +5,12 @@
 // btoa("tu@email.com".split("").reverse().join(""))
 export const site = {
   name: "Agustín Bernal",
+  fullName: "Agustín Nahuel Bernal Sita",
   emailEncoded: "bW9jLmxpYW1nQGxhbnJlYnRhY3N1Z2E=",
   github: "https://github.com/aguscatbernal",
-  linkedin: "", // EDITAR: pon aquí tu LinkedIn y aparece solo en contacto
+  linkedin: "https://www.linkedin.com/in/agust%C3%ADn-bernal-67479b372/",
+  // La cinta que pasa bajo la portada.
+  marquee: ["Flutter", "React", "TypeScript", "Java", "Dart", "C#", "Python", "Unity", "Firebase", "Three.js", "Cloudflare", "Git"],
 };
 
 const links = {
@@ -23,16 +26,17 @@ export const content = {
     lang: "es",
     path: "/",
     meta: {
-      title: "Agustín Bernal · Desarrollador de software en Málaga",
+      title: "Agustín Nahuel Bernal Sita · Desarrollador de software en Málaga",
       description:
         "Desarrollador de software (DAM, Matrícula de Honor) en Málaga. Webs y apps reales para negocios: wiccao.com, Merkavisión, AceMedia. Flutter, React, TypeScript. Busco mi primer puesto junior.",
     },
     nav: { work: "Proyectos", how: "Cómo trabajo", cv: "Trayectoria", contact: "Contacto", skip: "Saltar al contenido", switchLabel: "English", switchHref: "/en/" },
     hero: {
+      prompt: "whoami",
       kicker: "Desarrollador de software · Málaga",
-      title: "Hago webs y apps que usan *negocios de verdad*.",
+      statement: "Hago webs y apps que usan *negocios de verdad*.",
       lead:
-        "Soy Agustín Bernal, Técnico Superior en Desarrollo de Aplicaciones Multiplataforma con Matrícula de Honor. Trabajo como freelance para negocios de Málaga y Buenos Aires, y ahora busco mi primer puesto como desarrollador junior: quiero un equipo del que aprender y en el que crecer.",
+        "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma con Matrícula de Honor. Trabajo como freelance para negocios de Málaga y Buenos Aires, y ahora busco mi primer puesto como desarrollador junior: quiero un equipo del que aprender y en el que crecer.",
       ctaPrimary: "Ver proyectos",
       ctaSecondary: "Escríbeme",
       sheetTitle: "Ficha técnica",
@@ -226,6 +230,7 @@ export const content = {
       githubLabel: "GitHub",
       linkedinLabel: "LinkedIn",
       footer: "Hecha a mano por mí, sin cookies ni rastreadores.",
+      motionOff: "Reducir movimiento",
     },
   },
 
@@ -233,16 +238,17 @@ export const content = {
     lang: "en",
     path: "/en/",
     meta: {
-      title: "Agustín Bernal · Software developer in Málaga, Spain",
+      title: "Agustín Nahuel Bernal Sita · Software developer in Málaga, Spain",
       description:
         "Software developer (Multiplatform App Development, top honours) based in Málaga, Spain. Real websites and apps for real businesses: wiccao.com, Merkavisión, AceMedia. Flutter, React, TypeScript. Looking for my first junior role.",
     },
     nav: { work: "Work", how: "How I work", cv: "Background", contact: "Contact", skip: "Skip to content", switchLabel: "Español", switchHref: "/" },
     hero: {
+      prompt: "whoami",
       kicker: "Software developer · Málaga, Spain",
-      title: "I build websites and apps that *real businesses* use.",
+      statement: "I build websites and apps that *real businesses* use.",
       lead:
-        "I'm Agustín Bernal, a Multiplatform Application Developer (Higher Technician, top honours). I freelance for businesses in Málaga and Buenos Aires, and I'm now looking for my first junior developer role: a team to learn from and grow with.",
+        "Multiplatform Application Developer (Higher Technician, top honours). I freelance for businesses in Málaga and Buenos Aires, and I'm now looking for my first junior developer role: a team to learn from and grow with.",
       ctaPrimary: "See my work",
       ctaSecondary: "Get in touch",
       sheetTitle: "Spec sheet",
@@ -436,6 +442,7 @@ export const content = {
       githubLabel: "GitHub",
       linkedinLabel: "LinkedIn",
       footer: "Hand-built by me, with no cookies or trackers.",
+      motionOff: "Reduce motion",
     },
   },
 };

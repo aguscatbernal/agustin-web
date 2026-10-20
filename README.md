@@ -22,6 +22,16 @@ npm run images       # vuelve a preparar las imágenes de public/img/ desde las 
 
 En los títulos, lo que va entre `*asteriscos*` se resalta.
 
+## Movimiento
+- **Portada**: se escribe `$ whoami`, el nombre sube palabra a palabra y después entra el resto.
+  Con ratón, los puntos del fondo se encienden alrededor del cursor.
+- Cinta de tecnologías que pasa sola (se para al pasar el ratón), imágenes que se destapan al hacer
+  scroll y cifras de Wiccao que cuentan desde 0.
+- **Activado siempre**, aunque el sistema pida «reducir movimiento» (igual que en Merkavisión). Quien lo
+  prefiera lo apaga en el pie con **«Reducir movimiento»**; se guarda en el navegador (`ab-motion`).
+- Todo está en `src/main.js` y en el bloque «Movimiento» de `src/styles.css`. Sin JavaScript la web se ve
+  entera y quieta.
+
 ## Seguridad
 - **Sin servidor, sin formularios, sin cookies, sin terceros**: las tipografías se sirven desde la propia web.
 - **Cabeceras** (`public/_headers`): CSP estricta (solo la propia web), HSTS, anti-iframe, nosniff,

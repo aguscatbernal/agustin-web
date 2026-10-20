@@ -3,3 +3,4 @@ dist/
 raw/
 .wrangler/
 .env
+.claude/
