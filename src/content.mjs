@@ -12,7 +12,7 @@ export const site = {
 
 const links = {
   wiccao: "https://wiccao.com",
-  merkavision: "https://merkavision-sostoa.pages.dev",
+  merkavision: "https://merkavision-web.aguscatbernal.workers.dev",
   acemedia: "https://ac-marketing-malaga.pages.dev",
   estudio: "https://estudio-andrea-sita-web.aguscatbernal.workers.dev",
   reels: "https://github.com/aguscatbernal/reels_manager",
@@ -82,7 +82,7 @@ export const content = {
           body:
             "Un probador de gafas con la cámara: las monturas se colocan en tu cara y siguen el giro de la cabeza, con 5 modelos, 4 colores y 4 tipos de cristal. Una carta de optometrista interactiva que simula la miopía y te «pone las gafas». Y citas que solo dejan elegir los días que abre la tienda.",
           security: [
-            "La imagen de la cámara se procesa en tu dispositivo: no se sube a ningún sitio.",
+            "La cámara solo se enciende si pulsas el botón y se apaga al cambiar de pestaña; la imagen se procesa en tu dispositivo y no se graba ni se envía.",
             "Sin servidor: la cita sale por WhatsApp o email desde el móvil de quien la pide.",
             "Teléfono y email codificados y fuera del HTML para frenar a los bots; CSP estricta.",
           ],
@@ -292,7 +292,7 @@ export const content = {
           body:
             "A camera-based glasses try-on: frames sit on your face and follow your head as it turns, with 5 models, 4 colours and 4 lens types. An interactive eye chart that simulates short-sightedness and then «puts your glasses on». And appointments that only let you pick days the shop is open.",
           security: [
-            "The camera feed is processed on your device: nothing is uploaded.",
+            "The camera only turns on when you press the button and switches off when you change tabs; the image is processed on your device and never recorded or sent.",
             "No server: appointments go out via WhatsApp or email from the visitor's own phone.",
             "Phone and email are encoded and kept out of the HTML to stop scrapers; strict CSP.",
           ],
