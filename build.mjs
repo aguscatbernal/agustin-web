@@ -1,11 +1,16 @@
 // Genera la web estática en dist/: una página por idioma (/ y /en/),
 // más estilos, script, fuentes, imágenes, robots.txt, sitemap.xml y cabeceras.
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, rmSync, writeFileSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { content, site } from "./src/content.mjs";
 
 // Dirección pública de la web. Cambiarla aquí (o con SITE_URL) al tener dominio propio.
 const SITE_URL = (process.env.SITE_URL || "https://agustin-web.aguscatbernal.workers.dev").replace(/\/$/, "");
 const OUT = "dist";
+
+// Versión de CSS y JS en la URL: cada cambio obliga al navegador a bajar el archivo nuevo.
+const version = (f) => createHash("sha256").update(readFileSync(f)).digest("hex").slice(0, 10);
+const V = { css: version("src/styles.css"), js: version("src/main.js") };
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 // *texto* -> <em>texto</em>
@@ -85,7 +90,7 @@ function page(t) {
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=${V.css}">
 <script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
@@ -97,7 +102,7 @@ function page(t) {
     sameAs: [site.github, site.linkedin].filter(Boolean),
     knowsLanguage: ["es", "en"],
   })}</script>
-<script src="/main.js"></script>
+<script src="/main.js?v=${V.js}"></script>
 </head>
 <body>
 <a class="skip" href="#main">${t.nav.skip}</a>
@@ -218,7 +223,7 @@ function page(t) {
 <footer class="foot wrap">
   <p>© ${new Date().getFullYear()} ${esc(site.fullName)} · ${esc(t.contact.footer)}</p>
   <div class="foot-r">
-    <button class="motion-toggle mono" type="button" aria-pressed="false" hidden>${t.contact.motionOff}</button>
+    <button class="motion-toggle mono" type="button" aria-pressed="false" data-off="${esc(t.contact.motionOff)}" data-on="${esc(t.contact.motionOn)}" hidden>${t.contact.motionOff}</button>
     <a class="mono" href="${t.nav.switchHref}" hreflang="${other.lang}" lang="${other.lang}">${t.nav.switchLabel}</a>
   </div>
 </footer>

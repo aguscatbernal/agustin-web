@@ -5,13 +5,15 @@
 //
 // El movimiento está activado siempre, aunque el sistema pida reducirlo (como en
 // Merkavisión); quien lo prefiera lo apaga con «Reducir movimiento» en el pie, y la
-// elección se guarda en el navegador (ab-motion).
+// elección se guarda en el navegador (MOTION_KEY). Cambiar la clave vuelve a
+// activar el movimiento a todo el mundo.
+const MOTION_KEY = "ab-motion-2";
 const root = document.documentElement;
 root.classList.add("js");
 
 let calm = false;
 try {
-  calm = localStorage.getItem("ab-motion") === "off";
+  calm = localStorage.getItem(MOTION_KEY) === "off";
 } catch {}
 if (!calm) root.classList.add("motion");
 
@@ -36,15 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
 function motionToggle() {
   const btn = document.querySelector(".motion-toggle");
   if (!btn) return;
+  // El texto dice lo que hará el botón: «Reducir movimiento» o «Activar movimiento».
+  const paint = () => {
+    btn.setAttribute("aria-pressed", String(calm));
+    btn.textContent = calm ? btn.dataset.on : btn.dataset.off;
+  };
   btn.hidden = false;
-  btn.setAttribute("aria-pressed", String(calm));
+  paint();
   btn.addEventListener("click", () => {
     calm = !calm;
     root.classList.toggle("motion", !calm);
-    btn.setAttribute("aria-pressed", String(calm));
+    paint();
     try {
-      localStorage.setItem("ab-motion", calm ? "off" : "on");
+      localStorage.setItem(MOTION_KEY, calm ? "off" : "on");
     } catch {}
+    // Al volver a activarlo, la portada se presenta otra vez.
+    if (!calm) replayHero();
   });
 }
 
@@ -67,6 +76,14 @@ function presentHero() {
   };
   setTimeout(type, 400);
   setTimeout(go, 3000); // por si algo falla, el contenido nunca se queda oculto
+}
+
+function replayHero() {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+  hero.classList.remove("go");
+  void hero.offsetWidth; // aplica el estado inicial antes de volver a animar
+  presentHero();
 }
 
 // Los puntos de la portada se encienden alrededor del cursor (solo con ratón).

@@ -232,6 +232,7 @@ export const content = {
       linkedinLabel: "LinkedIn",
       footer: "Málaga, España",
       motionOff: "Reducir movimiento",
+      motionOn: "Activar movimiento",
     },
   },
 
@@ -445,6 +446,7 @@ export const content = {
       linkedinLabel: "LinkedIn",
       footer: "Málaga, Spain",
       motionOff: "Reduce motion",
+      motionOn: "Turn motion on",
     },
   },
 };
