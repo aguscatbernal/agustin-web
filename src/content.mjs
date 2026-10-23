@@ -221,7 +221,7 @@ export const content = {
       body:
         "Dar el salto de freelance a desarrollador junior con todas las letras: un equipo con code reviews, gente con más experiencia de la que aprender y proyectos en los que aportar desde el primer día. Traigo webs en producción, costumbre de documentar y muchas ganas.",
       learningTitle: "Lo siguiente que quiero aprender",
-      learning: ["Tests automáticos y CI/CD", "Backend con Spring Boot o Node", "Trabajar con code review en equipo"],
+      learning: ["Tests automáticos y CI/CD", "Backend con Spring Boot y .NET", "Trabajar con code review en equipo"],
     },
     contact: {
       title: "¿Hablamos?",
@@ -435,7 +435,7 @@ export const content = {
       body:
         "To go from freelancer to a junior developer in every sense: a team with code reviews, more experienced people to learn from and projects I can contribute to from day one. I bring sites in production, a habit of documenting my work and a lot of drive.",
       learningTitle: "What I want to learn next",
-      learning: ["Automated testing and CI/CD", "Backend with Spring Boot or Node", "Working with code review in a team"],
+      learning: ["Automated testing and CI/CD", "Backend with Spring Boot and .NET", "Working with code review in a team"],
     },
     contact: {
       title: "Let's talk",
